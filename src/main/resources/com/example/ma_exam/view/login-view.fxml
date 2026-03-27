@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="500.0" prefWidth="400.0" spacing="25.0" style="-fx-background-color: #f4f6f9; -fx-padding: 40;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ma_exam.controller.LoginController">
+   <children>
+      <!-- Logo Container -->
+      <VBox alignment="CENTER" spacing="10.0">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Ensat.jpg" />
+               </image>
+            </ImageView>
+            <Label text="ENSAT MANAGEMENT" textFill="#1a237e">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label text="Connectez-vous pour continuer" textFill="#7f8c8d">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+
+      <!-- Form Container -->
+      <VBox spacing="15.0">
+         <children>
+            <VBox spacing="5.0">
+               <children>
+                  <Label text="Nom d'utilisateur" textFill="#2c3e50">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtUsername" prefHeight="40.0" promptText="admin" style="-fx-background-radius: 5; -fx-border-color: #dcdde1; -fx-border-radius: 5;" />
+               </children>
+            </VBox>
+            <VBox spacing="5.0">
+               <children>
+                  <Label text="Mot de passe" textFill="#2c3e50">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="txtPassword" onAction="#handleLogin" prefHeight="40.0" promptText="••••••••" style="-fx-background-radius: 5; -fx-border-color: #dcdde1; -fx-border-radius: 5;" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+
+      <!-- Action Button -->
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLogin" prefHeight="45.0" style="-fx-background-color: #1a237e; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15; -fx-background-radius: 5; -fx-cursor: hand;" text="SE CONNECTER" />
+      
+      <Label text="© 2025 ENSAT - Tous droits réservés" textFill="#bdc3c7">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+   </children>
+</VBox>

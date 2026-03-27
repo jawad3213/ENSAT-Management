@@ -1,0 +1,96 @@
+/* Main Application Styles */
+.root {
+    -fx-font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* Sidebar Styling: Antigravity/Floating Look */
+.sidebar {
+    -fx-background-color: rgba(26, 35, 126, 0.95);
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 15, 0, 0, 8);
+    -fx-padding: 20 10 20 10;
+}
+
+/* Sidebar Buttons */
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 12 15 12 15;
+    -fx-background-radius: 10;
+    -fx-alignment: BASELINE_LEFT;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-text-fill: #00E5FF;
+    /* Cyan accent */
+}
+
+.nav-button-active {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-text-fill: #00E5FF;
+    -fx-font-weight: bold;
+}
+
+/* Logo Section */
+.logo-container {
+    -fx-padding: 0 0 30 10;
+}
+
+.logo-text {
+    -fx-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+
+/* Profile Section */
+.profile-placeholder {
+    -fx-background-color: #3f51b5;
+    -fx-background-radius: 50;
+    -fx-min-width: 45;
+    -fx-min-height: 45;
+    -fx-max-width: 45;
+    -fx-max-height: 45;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 5, 0, 0, 2);
+}
+
+.profile-container {
+    -fx-padding: 20 0 0 10;
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+    -fx-border-width: 1 0 0 0;
+}
+
+/* Content Area Background */
+.main-content {
+    -fx-background-color: #f5f6fa;
+}
+
+/* Cards / Content Panels */
+.content-panel {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.05), 10, 0, 0, 2);
+    -fx-padding: 20;
+}
+
+/* Logout Button */
+.logout-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ff7675;
+    -fx-font-size: 14px;
+    -fx-padding: 12 15 12 15;
+    -fx-background-radius: 10;
+    -fx-alignment: BASELINE_LEFT;
+    -fx-cursor: hand;
+    -fx-border-color: rgba(255, 118, 117, 0.3);
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+}
+
+.logout-button:hover {
+    -fx-background-color: rgba(255, 118, 117, 0.15);
+    -fx-text-fill: #ff4757;
+    -fx-border-color: #ff4757;
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="650.0" prefWidth="850.0" spacing="20.0" styleClass="content-panel" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ma_exam.controller.DossierController">
+   <padding>
+      <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+   </padding>
+   <children>
+      <!-- Header Section -->
+      <VBox spacing="5.0">
+         <children>
+            <Label text="Dossiers Administratifs" textFill="#1a237e">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Label>
+            <Label text="Liste des dossiers administratifs générés automatiquement pour chaque étudiant." textFill="#7f8c8d">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+
+      <!-- Table Section -->
+      <TableView fx:id="tableDossiers" prefHeight="400.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
+        <columns>
+          <TableColumn fx:id="colId" maxWidth="60.0" prefWidth="50.0" text="ID" />
+          <TableColumn fx:id="colNum" prefWidth="150.0" text="N° INSCRIPTION" />
+          <TableColumn fx:id="colDate" prefWidth="120.0" text="DATE CRÉATION" />
+          <TableColumn fx:id="colStudent" prefWidth="250.0" text="ÉTUDIANT" />
+          <TableColumn fx:id="colMatricule" prefWidth="120.0" text="MATRICULE" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</VBox>

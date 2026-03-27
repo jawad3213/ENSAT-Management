@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" styleClass="main-content" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ma_exam.controller.DashboardController">
+   <stylesheets>
+      <URL value="@style.css" />
+   </stylesheets>
+   <left>
+      <AnchorPane prefWidth="280.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox fx:id="sideMenu" layoutX="15.0" layoutY="15.0" styleClass="sidebar" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+               <children>
+                  <VBox alignment="CENTER" spacing="10.0" styleClass="logo-container">
+                     <children>
+                        <ImageView fitHeight="70.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Ensat.jpg" />
+                           </image>
+                        </ImageView>
+                        <VBox alignment="CENTER">
+                           <children>
+                              <Label styleClass="logo-text" text="ENSAT" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="22.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Management System" textFill="#00e5ff" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  
+                  <VBox spacing="8.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Button fx:id="btnDashboard" mnemonicParsing="false" onAction="#handleSideMenuAction" prefWidth="230.0" styleClass="nav-button" text=" Dashboard" />
+                        <Button fx:id="btnFilieres" mnemonicParsing="false" onAction="#handleSideMenuAction" prefWidth="230.0" styleClass="nav-button" text=" Gestion des Filières" />
+                        <Button fx:id="btnStudents" mnemonicParsing="false" onAction="#handleSideMenuAction" prefWidth="230.0" styleClass="nav-button" text=" Gestion des Étudiants" />
+                        <Button fx:id="btnCourses" mnemonicParsing="false" onAction="#handleSideMenuAction" prefWidth="230.0" styleClass="nav-button" text=" Gestion des Cours" />
+                        <Button fx:id="btnDossiers" mnemonicParsing="false" onAction="#handleSideMenuAction" prefWidth="230.0" styleClass="nav-button" text=" Dossier Administratif" />
+                     </children>
+                  </VBox>
+                  
+                  <!-- Bottom Section: Profile + Logout -->
+                  <VBox alignment="BOTTOM_CENTER" spacing="15.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <!-- Profile Card -->
+                        <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="profile-container">
+                           <children>
+                              <StackPane fx:id="profileCircle" styleClass="profile-placeholder">
+                                 <children>
+                                    <Label text="EJ" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </StackPane>
+                              <VBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <Label text="EL HAIL JAOUAD" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Administrateur" textFill="#bdc3c7">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        
+                        <!-- Logout Button -->
+                        <Button fx:id="btnLogout" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLogout" styleClass="logout-button" text=" Déconnexion" />
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="15.0" right="15.0" top="30.0" />
+               </padding>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <StackPane fx:id="contentArea" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="15.0" left="5.0" right="15.0" top="15.0" />
+         </padding>
+         <children>
+            <VBox fx:id="welcomePanel" alignment="CENTER" spacing="15.0" styleClass="content-panel">
+               <children>
+                  <Label text="Système de Gestion Académique" textFill="#1a237e">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <Label text="Sélectionnez un module pour commencer la gestion." textFill="#7f8c8d">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </center>
+</BorderPane>
