@@ -1,75 +1,68 @@
 -- ==========================================================
--- SCRIPT DE CRÉATION DE LA BASE DE DONNÉES (POSTGRESQL)
+-- SCRIPT DE CRÉATION DE LA BASE DE DONNÉES (SQLITE)
 -- Projet: Gestion Académique (JavaFX + JDBC)
+-- Note: Tables are auto-created by DBConnection.java
+-- This file is kept for documentation purposes.
 -- ==========================================================
 
--- 1. Note: PostgreSQL typically requires you to create the database manually 
--- or use \c to switch to it. Ensure the database 'gestion_academique' exists.
+-- 1. Suppression des tables si elles existent
+DROP TABLE IF EXISTS eleve_cours;
+DROP TABLE IF EXISTS filiere_cours;
+DROP TABLE IF EXISTS dossier_administratif;
+DROP TABLE IF EXISTS eleve;
+DROP TABLE IF EXISTS cours;
+DROP TABLE IF EXISTS filiere;
 
--- 2. Suppression des tables si elles existent (ordre respectant les clés étrangères)
-DROP TABLE IF EXISTS eleve_cours CASCADE;
-DROP TABLE IF EXISTS filiere_cours CASCADE;
-DROP TABLE IF EXISTS dossier_administratif CASCADE;
-DROP TABLE IF EXISTS eleve CASCADE;
-DROP TABLE IF EXISTS cours CASCADE;
-DROP TABLE IF EXISTS filiere CASCADE;
-
--- Suppression du type ENUM s'il existe
-DROP TYPE IF EXISTS student_status;
-
--- 3. Création du type ENUM pour le statut de l'élève
-CREATE TYPE student_status AS ENUM ('ACTIVE', 'SUSPENDED');
-
--- 4. Table: Filiere
-CREATE TABLE filiere (
-    id SERIAL PRIMARY KEY,
-    code VARCHAR(50) NOT NULL UNIQUE,
-    nom VARCHAR(100) NOT NULL,
+-- 2. Table: Filiere
+CREATE TABLE IF NOT EXISTS filiere (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    code TEXT NOT NULL UNIQUE,
+    nom TEXT NOT NULL,
     description TEXT
 );
 
--- 5. Table: Cours
-CREATE TABLE cours (
-    id SERIAL PRIMARY KEY,
-    code VARCHAR(50) NOT NULL UNIQUE,
-    intitule VARCHAR(150) NOT NULL
+-- 3. Table: Cours
+CREATE TABLE IF NOT EXISTS cours (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    code TEXT NOT NULL UNIQUE,
+    intitule TEXT NOT NULL
 );
 
--- 6. Table: Eleve
-CREATE TABLE eleve (
-    id SERIAL PRIMARY KEY,
-    matricule VARCHAR(50) NOT NULL UNIQUE,
-    nom VARCHAR(100) NOT NULL,
-    prenom VARCHAR(100) NOT NULL,
-    email VARCHAR(150) NOT NULL UNIQUE,
-    filiere_id INT,
-    status student_status DEFAULT 'ACTIVE',
-    CONSTRAINT fk_eleve_filiere FOREIGN KEY (filiere_id) REFERENCES filiere(id) ON DELETE RESTRICT
+-- 4. Table: Eleve
+CREATE TABLE IF NOT EXISTS eleve (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    matricule TEXT NOT NULL UNIQUE,
+    nom TEXT NOT NULL,
+    prenom TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    filiere_id INTEGER,
+    status TEXT DEFAULT 'ACTIVE' CHECK(status IN ('ACTIVE', 'SUSPENDED')),
+    FOREIGN KEY (filiere_id) REFERENCES filiere(id) ON DELETE RESTRICT
 );
 
--- 7. Table: DossierAdministratif
-CREATE TABLE dossier_administratif (
-    id SERIAL PRIMARY KEY,
-    numero_inscription VARCHAR(50) NOT NULL UNIQUE,
-    date_creation DATE NOT NULL,
-    eleve_id INT UNIQUE NOT NULL,
-    CONSTRAINT fk_dossier_eleve FOREIGN KEY (eleve_id) REFERENCES eleve(id) ON DELETE CASCADE
+-- 5. Table: DossierAdministratif
+CREATE TABLE IF NOT EXISTS dossier_administratif (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    numero_inscription TEXT NOT NULL UNIQUE,
+    date_creation TEXT NOT NULL,
+    eleve_id INTEGER UNIQUE NOT NULL,
+    FOREIGN KEY (eleve_id) REFERENCES eleve(id) ON DELETE CASCADE
 );
 
--- 8. Table d'association: filiere_cours
-CREATE TABLE filiere_cours (
-    filiere_id INT,
-    cours_id INT,
+-- 6. Table d'association: filiere_cours
+CREATE TABLE IF NOT EXISTS filiere_cours (
+    filiere_id INTEGER,
+    cours_id INTEGER,
     PRIMARY KEY (filiere_id, cours_id),
-    CONSTRAINT fk_fc_filiere FOREIGN KEY (filiere_id) REFERENCES filiere(id) ON DELETE CASCADE,
-    CONSTRAINT fk_fc_cours FOREIGN KEY (cours_id) REFERENCES cours(id) ON DELETE CASCADE
+    FOREIGN KEY (filiere_id) REFERENCES filiere(id) ON DELETE CASCADE,
+    FOREIGN KEY (cours_id) REFERENCES cours(id) ON DELETE CASCADE
 );
 
--- 9. Table d'association: eleve_cours
-CREATE TABLE eleve_cours (
-    eleve_id INT,
-    cours_id INT,
+-- 7. Table d'association: eleve_cours
+CREATE TABLE IF NOT EXISTS eleve_cours (
+    eleve_id INTEGER,
+    cours_id INTEGER,
     PRIMARY KEY (eleve_id, cours_id),
-    CONSTRAINT fk_ec_eleve FOREIGN KEY (eleve_id) REFERENCES eleve(id) ON DELETE CASCADE,
-    CONSTRAINT fk_ec_cours FOREIGN KEY (cours_id) REFERENCES cours(id) ON DELETE CASCADE
+    FOREIGN KEY (eleve_id) REFERENCES eleve(id) ON DELETE CASCADE,
+    FOREIGN KEY (cours_id) REFERENCES cours(id) ON DELETE CASCADE
 );

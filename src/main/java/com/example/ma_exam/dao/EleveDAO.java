@@ -10,9 +10,9 @@ import java.util.List;
 public class EleveDAO {
 
     public void add(Eleve eleve) throws SQLException {
-        String sql = "INSERT INTO eleve (matricule, nom, prenom, email, filiere_id, status) VALUES (?, ?, ?, ?, ?, CAST(? AS student_status))";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        String sql = "INSERT INTO eleve (matricule, nom, prenom, email, filiere_id, status) VALUES (?, ?, ?, ?, ?, ?)";
+        Connection conn = DBConnection.getConnection();
+        try (PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, eleve.getMatricule());
             pstmt.setString(2, eleve.getNom());
             pstmt.setString(3, eleve.getPrenom());
@@ -32,8 +32,8 @@ public class EleveDAO {
     public List<Eleve> getAll() throws SQLException {
         List<Eleve> eleves = new ArrayList<>();
         String sql = "SELECT * FROM eleve";
-        try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.createStatement();
+        Connection conn = DBConnection.getConnection();
+        try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 eleves.add(mapResultSetToEleve(rs));
@@ -49,8 +49,8 @@ public class EleveDAO {
         List<String[]> data = new ArrayList<>();
         String sql = "SELECT e.*, f.nom as filiere_nom FROM eleve e " +
                      "LEFT JOIN filiere f ON e.filiere_id = f.id";
-        try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.createStatement();
+        Connection conn = DBConnection.getConnection();
+        try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 data.add(new String[]{
@@ -67,9 +67,9 @@ public class EleveDAO {
     }
 
     public void update(Eleve eleve) throws SQLException {
-        String sql = "UPDATE eleve SET matricule = ?, nom = ?, prenom = ?, email = ?, filiere_id = ?, status = CAST(? AS student_status) WHERE id = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        String sql = "UPDATE eleve SET matricule = ?, nom = ?, prenom = ?, email = ?, filiere_id = ?, status = ? WHERE id = ?";
+        Connection conn = DBConnection.getConnection();
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, eleve.getMatricule());
             pstmt.setString(2, eleve.getNom());
             pstmt.setString(3, eleve.getPrenom());
@@ -83,8 +83,8 @@ public class EleveDAO {
 
     public void delete(int id) throws SQLException {
         String sql = "DELETE FROM eleve WHERE id = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        Connection conn = DBConnection.getConnection();
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
         }
@@ -134,8 +134,8 @@ public class EleveDAO {
     }
     public int getCount() throws SQLException {
         String sql = "SELECT COUNT(*) FROM eleve";
-        try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.createStatement();
+        Connection conn = DBConnection.getConnection();
+        try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             if (rs.next()) return rs.getInt(1);
         }

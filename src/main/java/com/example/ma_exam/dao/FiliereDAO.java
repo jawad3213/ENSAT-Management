@@ -11,8 +11,8 @@ public class FiliereDAO {
     
     public void add(Filiere filiere) throws SQLException {
         String sql = "INSERT INTO filiere (code, nom, description) VALUES (?, ?, ?)";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        Connection conn = DBConnection.getConnection();
+        try (PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, filiere.getCode());
             pstmt.setString(2, filiere.getNom());
             pstmt.setString(3, filiere.getDescription());
@@ -29,8 +29,8 @@ public class FiliereDAO {
     public List<Filiere> getAll() throws SQLException {
         List<Filiere> filieres = new ArrayList<>();
         String sql = "SELECT * FROM filiere";
-        try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.createStatement();
+        Connection conn = DBConnection.getConnection();
+        try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 filieres.add(new Filiere(
@@ -46,8 +46,8 @@ public class FiliereDAO {
 
     public void update(Filiere filiere) throws SQLException {
         String sql = "UPDATE filiere SET code = ?, nom = ?, description = ? WHERE id = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        Connection conn = DBConnection.getConnection();
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, filiere.getCode());
             pstmt.setString(2, filiere.getNom());
             pstmt.setString(3, filiere.getDescription());
@@ -58,8 +58,8 @@ public class FiliereDAO {
 
     public void delete(int id) throws SQLException {
         String sql = "DELETE FROM filiere WHERE id = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        Connection conn = DBConnection.getConnection();
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
         }
@@ -67,8 +67,8 @@ public class FiliereDAO {
 
     public Filiere getById(int id) throws SQLException {
         String sql = "SELECT * FROM filiere WHERE id = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        Connection conn = DBConnection.getConnection();
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
@@ -85,8 +85,8 @@ public class FiliereDAO {
     }
     public int getCount() throws SQLException {
         String sql = "SELECT COUNT(*) FROM filiere";
-        try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.createStatement();
+        Connection conn = DBConnection.getConnection();
+        try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             if (rs.next()) return rs.getInt(1);
         }
