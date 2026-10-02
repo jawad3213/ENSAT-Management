@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -20,7 +25,7 @@
                   <Font name="System Bold" size="26.0" />
                </font>
             </Label>
-            <Label text="Liste des dossiers administratifs générés automatiquement pour chaque étudiant." textFill="#7f8c8d">
+            <Label text="Un dossier unique par élève : création (élèves sans dossier) et modification." textFill="#7f8c8d">
                <font>
                   <Font size="14.0" />
                </font>
@@ -28,13 +33,59 @@
          </children>
       </VBox>
 
+      <!-- Form Section -->
+      <HBox spacing="20.0">
+         <children>
+            <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Élève (sans dossier)" textFill="#2c3e50">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="comboEleve" maxWidth="Infinity" prefHeight="35.0" promptText="Choisir un élève..." style="-fx-background-radius: 5;" />
+               </children>
+            </VBox>
+            <VBox spacing="5.0">
+               <children>
+                  <Label text="N° d'inscription" textFill="#2c3e50">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtNumero" prefHeight="35.0" prefWidth="150.0" promptText="Ex: INS-12" style="-fx-background-radius: 5;" />
+               </children>
+            </VBox>
+            <VBox spacing="5.0">
+               <children>
+                  <Label text="Date de création" textFill="#2c3e50">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="dateCreation" prefHeight="35.0" prefWidth="150.0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+
+      <!-- Actions Section -->
+      <HBox alignment="CENTER" spacing="15.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleAdd" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;" text="CRÉER" />
+            <Button mnemonicParsing="false" onAction="#handleUpdate" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;" text="MODIFIER" />
+            <Button mnemonicParsing="false" onAction="#handleDelete" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;" text="SUPPRIMER" />
+            <Button mnemonicParsing="false" onAction="#handleClear" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #95A5A6; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;" text="VIDER" />
+         </children>
+      </HBox>
+
       <!-- Table Section -->
       <TableView fx:id="tableDossiers" prefHeight="400.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
         <columns>
-          <TableColumn fx:id="colId" maxWidth="60.0" prefWidth="50.0" text="ID" />
-          <TableColumn fx:id="colNum" prefWidth="150.0" text="N° INSCRIPTION" />
+          <TableColumn fx:id="colId" maxWidth="60.0" minWidth="40.0" prefWidth="50.0" text="ID" />
+          <TableColumn fx:id="colNum" prefWidth="130.0" text="N° INSCRIPTION" />
           <TableColumn fx:id="colDate" prefWidth="120.0" text="DATE CRÉATION" />
-          <TableColumn fx:id="colStudent" prefWidth="250.0" text="ÉTUDIANT" />
+          <TableColumn fx:id="colStudent" prefWidth="200.0" text="ÉTUDIANT" />
           <TableColumn fx:id="colMatricule" prefWidth="120.0" text="MATRICULE" />
         </columns>
          <columnResizePolicy>

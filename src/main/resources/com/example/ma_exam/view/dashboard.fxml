@@ -102,22 +102,7 @@
          <padding>
             <Insets bottom="15.0" left="5.0" right="15.0" top="15.0" />
          </padding>
-         <children>
-            <VBox fx:id="welcomePanel" alignment="CENTER" spacing="15.0" styleClass="content-panel">
-               <children>
-                  <Label text="Système de Gestion Académique" textFill="#1a237e">
-                     <font>
-                        <Font name="System Bold" size="28.0" />
-                     </font>
-                  </Label>
-                  <Label text="Sélectionnez un module pour commencer la gestion." textFill="#7f8c8d">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-         </children>
+         <!-- Filled by DashboardController.loadView() -->
       </StackPane>
    </center>
 </BorderPane>

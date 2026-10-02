@@ -1,10 +1,11 @@
 package com.example.ma_exam.controller;
 
+import com.example.ma_exam.util.Alerts;
+import com.example.ma_exam.util.AppConfig;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -21,11 +22,19 @@ public class LoginController {
         String username = txtUsername.getText();
         String password = txtPassword.getText();
 
-        // Simple hardcoded authentication
-        if ("admin".equals(username) && "admin".equals(password)) {
+        // Admin account comes from config.properties (or APP_ADMIN_USER / APP_ADMIN_PASSWORD), never from the code
+        String expectedUser = AppConfig.get("app.admin.user", "admin");
+        String expectedPassword = AppConfig.get("app.admin.password");
+        if (expectedPassword == null) {
+            Alerts.error("Configuration manquante", "Aucun mot de passe administrateur n'est configuré.\n"
+                    + "Définissez app.admin.password dans config.properties (voir config.properties.example).");
+            return;
+        }
+
+        if (expectedUser.equals(username) && expectedPassword.equals(password)) {
             navigateToDashboard();
         } else {
-            showAlert("Erreur de connexion", "Nom d'utilisateur ou mot de passe incorrect.");
+            Alerts.error("Erreur de connexion", "Nom d'utilisateur ou mot de passe incorrect.");
         }
     }
 
@@ -37,16 +46,7 @@ public class LoginController {
             stage.setScene(scene);
             stage.centerOnScreen();
         } catch (IOException e) {
-            e.printStackTrace();
-            showAlert("Erreur", "Impossible de charger le tableau de bord.");
+            Alerts.error("Impossible de charger le tableau de bord", e);
         }
-    }
-
-    private void showAlert(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
     }
 }

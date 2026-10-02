@@ -1,12 +1,12 @@
 package com.example.ma_exam.controller;
 
+import com.example.ma_exam.util.Alerts;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -31,7 +31,7 @@ public class DashboardController {
     @FXML
     private void handleSideMenuAction(ActionEvent event) {
         Button clickedButton = (Button) event.getSource();
-        
+
         if (clickedButton == btnDashboard) {
             loadView("dashboard-stats.fxml");
         } else if (clickedButton == btnStudents) {
@@ -43,9 +43,10 @@ public class DashboardController {
         } else if (clickedButton == btnDossiers) {
             loadView("dossier-view.fxml");
         }
-        
+
         highlightActiveButton(clickedButton);
     }
+
     @FXML
     private void handleLogout() {
         try {
@@ -55,7 +56,7 @@ public class DashboardController {
             stage.setScene(scene);
             stage.centerOnScreen();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alerts.error("Erreur", e);
         }
     }
 
@@ -70,10 +71,9 @@ public class DashboardController {
     private void loadView(String fxmlFile) {
         try {
             Parent fxml = FXMLLoader.load(getClass().getResource("/com/example/ma_exam/view/" + fxmlFile));
-            contentArea.getChildren().removeAll();
             contentArea.getChildren().setAll(fxml);
         } catch (IOException e) {
-            e.printStackTrace();
+            Alerts.error("Impossible d'ouvrir le module", e);
         }
     }
 }

@@ -1,21 +1,35 @@
 package com.example.ma_exam.model;
 
 public class Eleve {
-    public enum Status { ACTIVE, SUSPENDED }
+    public enum Status {
+        ACTIVE("Actif"), SUSPENDED("Suspendu");
+
+        private final String label;
+
+        Status(String label) {
+            this.label = label;
+        }
+
+        @Override
+        public String toString() {
+            return label;
+        }
+    }
 
     private int id;
     private String matricule;
     private String nom;
     private String prenom;
     private String email;
-    private int filiereId;
+    private Integer filiereId;
     private Status status;
+    private String filiereNom; // Display only (filled by JOIN with filiere)
 
     public Eleve() {
         this.status = Status.ACTIVE;
     }
 
-    public Eleve(int id, String matricule, String nom, String prenom, String email, int filiereId, Status status) {
+    public Eleve(int id, String matricule, String nom, String prenom, String email, Integer filiereId, Status status) {
         this.id = id;
         this.matricule = matricule;
         this.nom = nom;
@@ -25,7 +39,7 @@ public class Eleve {
         this.status = status;
     }
 
-    public Eleve(String matricule, String nom, String prenom, String email, int filiereId) {
+    public Eleve(String matricule, String nom, String prenom, String email, Integer filiereId) {
         this.matricule = matricule;
         this.nom = nom;
         this.prenom = prenom;
@@ -50,11 +64,14 @@ public class Eleve {
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
-    public int getFiliereId() { return filiereId; }
-    public void setFiliereId(int filiereId) { this.filiereId = filiereId; }
+    public Integer getFiliereId() { return filiereId; }
+    public void setFiliereId(Integer filiereId) { this.filiereId = filiereId; }
 
     public Status getStatus() { return status; }
     public void setStatus(Status status) { this.status = status; }
+
+    public String getFiliereNom() { return filiereNom; }
+    public void setFiliereNom(String filiereNom) { this.filiereNom = filiereNom; }
 
     @Override
     public String toString() {

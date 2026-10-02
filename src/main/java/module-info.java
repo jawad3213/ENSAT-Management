@@ -3,7 +3,6 @@ module com.example.ma_exam {
     requires javafx.fxml;
     requires java.sql;
 
-    opens com.example.ma_exam to javafx.fxml;
     opens com.example.ma_exam.model to javafx.base;
     opens com.example.ma_exam.controller to javafx.fxml;
 

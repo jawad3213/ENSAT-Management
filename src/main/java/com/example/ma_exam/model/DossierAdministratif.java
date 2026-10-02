@@ -7,6 +7,8 @@ public class DossierAdministratif {
     private String numeroInscription;
     private LocalDate dateCreation;
     private int eleveId;
+    private String eleveNomComplet; // Display only (filled by JOIN with eleve)
+    private String eleveMatricule;  // Display only (filled by JOIN with eleve)
 
     public DossierAdministratif() {}
 
@@ -35,6 +37,12 @@ public class DossierAdministratif {
 
     public int getEleveId() { return eleveId; }
     public void setEleveId(int eleveId) { this.eleveId = eleveId; }
+
+    public String getEleveNomComplet() { return eleveNomComplet; }
+    public void setEleveNomComplet(String eleveNomComplet) { this.eleveNomComplet = eleveNomComplet; }
+
+    public String getEleveMatricule() { return eleveMatricule; }
+    public void setEleveMatricule(String eleveMatricule) { this.eleveMatricule = eleveMatricule; }
 
     @Override
     public String toString() {

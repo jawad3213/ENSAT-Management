@@ -36,3 +36,8 @@ build/
 
 ### Mac OS ###
 .DS_Store
+### IntelliJ IDEA (whole folder) ###
+.idea/
+
+### Local configuration (credentials) ###
+config.properties

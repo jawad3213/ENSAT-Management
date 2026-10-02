@@ -1,0 +1,11 @@
+# Copy this file to "config.properties" (git-ignored) and fill in your values.
+# Each key can also be set as an environment variable: db.password -> DB_PASSWORD, app.admin.password -> APP_ADMIN_PASSWORD.
+
+# PostgreSQL connection
+db.url=jdbc:postgresql://localhost:5432/gestion_academique
+db.user=postgres
+db.password=
+
+# Application login
+app.admin.user=admin
+app.admin.password=

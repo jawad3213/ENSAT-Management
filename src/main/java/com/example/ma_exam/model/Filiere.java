@@ -5,6 +5,7 @@ public class Filiere {
     private String code;
     private String nom;
     private String description;
+    private int nbEleves; // Display only (COUNT of students, filled by JOIN)
 
     public Filiere() {}
 
@@ -33,6 +34,9 @@ public class Filiere {
 
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
+
+    public int getNbEleves() { return nbEleves; }
+    public void setNbEleves(int nbEleves) { this.nbEleves = nbEleves; }
 
     @Override
     public String toString() {

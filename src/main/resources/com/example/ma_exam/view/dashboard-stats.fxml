@@ -151,7 +151,7 @@
             <!-- Recent Filieres Container -->
             <VBox spacing="10.0" styleClass="content-panel" HBox.hgrow="ALWAYS">
                <children>
-                  <Label text="Filières Récents" textFill="#2c3e50">
+                  <Label text="Filières Récentes" textFill="#2c3e50">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -159,7 +159,8 @@
                   <TableView fx:id="tableRecentFilieres" prefHeight="200.0">
                     <columns>
                       <TableColumn fx:id="colFiliereCode" prefWidth="100.0" text="CODE" />
-                      <TableColumn fx:id="colFiliereNom" prefWidth="250.0" text="NOM DE FILIÈRE" />
+                      <TableColumn fx:id="colFiliereNom" prefWidth="200.0" text="NOM" />
+                      <TableColumn fx:id="colFiliereEleves" prefWidth="70.0" text="ÉLÈVES" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
